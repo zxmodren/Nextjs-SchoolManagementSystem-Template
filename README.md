@@ -37,7 +37,16 @@ NextJS-SMS-Template is a platform designed to assist school administration, teac
 5. Access the application at `http://localhost:3000`
 
 ## License
-This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE Version 3 - see the LICENSE.md file for details.
+This project is licensed under the MIT LICENSE - see the LICENSE.md file for details.
+
+
+## Developer Message 
+Hi everyone, this is my first and probably last Next.js project due to my laptop's very low end specifications (Super Potato). So, I won't be able to continue this project for an indefinite time. Thank you all for visiting, have a good day!
+
+
+## Footage
+[![Picture1](https://i.ibb.co/ZNJJfMp/Picture1.png)](https://imgbb.com/)
+
 
 ## DONATE
 <a href="https://www.buymeacoffee.com/aryaferdya9"><img src="https://img.buymeacoffee.com/button-api/?text=Help Me Repair&emoji=🛠️&slug=aryaferdya9&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
