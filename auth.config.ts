@@ -86,6 +86,10 @@ export default {
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
       }
+      
+      if (token.role && session.user) {
+        session.user.status = token.role as UserStatus;
+      }
 
       if (session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
@@ -112,6 +116,7 @@ export default {
       token.name = existingUser.name;
       token.email = existingUser.email;
       token.role = existingUser.role;
+      token.status = existingUser.status;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
