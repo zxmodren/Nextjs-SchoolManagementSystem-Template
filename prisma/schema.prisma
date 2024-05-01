@@ -1,0 +1,189 @@
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+enum UserRole {
+  ADMIN
+  TEACHER
+  STUDENT
+  UNKNOW
+}
+
+enum UserGender {
+  MALE
+  FEMALE
+  UNKNOW
+}
+enum UserStatus {
+  ACTIVE
+  IN_ACTIVE
+  BANNED
+  UNKNOW
+}
+
+enum LessonCategory {
+  LANGUANGES
+  ART
+  SCIENCE
+  SPORT
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole   @default(UNKNOW)
+  gender        UserGender @default(UNKNOW)
+  accounts      Account[]
+  isTwoFactorEnabled Boolean @default(false)
+  twoFactorConfirmation TwoFactorConfirmation?
+  status        UserStatus @default(UNKNOW)
+  teacher       Teachers[]
+  student       Students[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id String @id @default(cuid())
+  email String
+  token String @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id String @id @default(cuid())
+  email String
+  token String @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id String @id @default(cuid())
+  email String
+  token String @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id String @id @default(cuid())
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+
+model Teachers {
+  id       String   @id @default(cuid())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId   String   
+  name     String?
+  lesson   Lessons[] @relation("lessontoteacher")
+  assignment Assignments[] @relation("assignmenttoteacher")
+  @@unique([userId])
+}
+
+model Students {
+  id       String   @id @default(cuid())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId   String   
+  name     String?
+  onClassroom OnClassroom[]
+  @@unique([userId])
+}
+
+
+
+
+model Classrooms{
+  id       String   @id @default(cuid())
+  name     String
+  cap      String
+  schedule Schedule[] @relation("classtoschedule")
+  assingment Assignments[] @relation("classroomstoassingment")
+  studentOnclassroom OnClassroom[]
+}
+
+model OnClassroom{
+  id String @id @default(cuid())
+  userId String
+  classroomId String
+  student Students @relation(fields: [userId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  classroom Classrooms @relation(fields: [classroomId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@index([userId, classroomId])
+}
+
+model Lessons{
+  id       String   @id @default(cuid())
+  name     String
+  teacher  Teachers @relation("lessontoteacher",fields: [teacherId], references: [userId], onDelete: Cascade, onUpdate: Cascade)
+  teacherId String  
+  cat      LessonCategory
+  schedule Schedule[] @relation("lessontoschedule")
+  assingment Assignments[] @relation("lessontoassingment")
+  @@index([teacherId])
+}
+
+
+model Schedule {
+  id        String @id @default(cuid())
+  lessonId  String
+  classId   String
+  day       DateTime
+  time      String
+  lesson    Lessons      @relation("lessontoschedule", fields: [lessonId], references: [id], onDelete: Cascade)
+  classroom Classrooms   @relation("classtoschedule",fields: [classId], references: [id], onDelete: Cascade)
+  @@index([lessonId, classId])
+}
+
+model Assignments{
+  id String @id @default(cuid())
+  task String
+  lessonId String
+  classId String
+  createBy String
+  deadline DateTime
+  fileUrl String?
+  time String
+  lesson Lessons @relation("lessontoassingment", fields: [lessonId], references: [id], onDelete: Cascade)
+  classroom Classrooms   @relation("classroomstoassingment",fields: [classId], references: [id], onDelete: Cascade)
+  teacher Teachers   @relation("assignmenttoteacher",fields: [createBy], references: [userId], onDelete: Cascade)
+  @@index([lessonId, classId, createBy])
+  }
+
