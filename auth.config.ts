@@ -6,7 +6,7 @@ import Credentials from "next-auth/providers/credentials";
 import { db } from "@/lib/db";
 import { LoginSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
-import { UserStatus, UserGender, UserRole } from "@prisma/client";
+import { UserStatus, UserRole } from "@prisma/client";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getUserById } from "@/data/user";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
@@ -87,8 +87,8 @@ export default {
         session.user.role = token.role as UserRole;
       }
       
-      if (token.role && session.user) {
-        session.user.status = token.role as UserStatus;
+      if (token.status && session.user) {
+        session.user.status = token.status as UserStatus;
       }
 
       if (session.user) {
