@@ -111,7 +111,7 @@ export default {
       token.isOAuth = !!existingAccount;
       token.name = existingUser.name;
       token.email = existingUser.email;
-      token.gender = existingUser.gender;
+      token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
