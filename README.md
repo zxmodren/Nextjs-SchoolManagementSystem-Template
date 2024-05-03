@@ -33,8 +33,9 @@ NextJS-SMS-Template is a platform designed to assist school administration, teac
 1. Clone this repository: `git clone https://github.com/zxmodren/NextJS-SMS-Template.git`
 2. Install dependencies: `npm install`
 3. Configure the database and environment variables.
-4. Run the development server: `npm run dev`
-5. Access the application at `http://localhost:3000`
+4. Generate prisma : `npx prisma generate`
+5. Run the development server: `npm run dev`
+6. Access the application at `http://localhost:3000`
 
 ## License
 This project is licensed under the MIT LICENSE - see the LICENSE.md file for details.
