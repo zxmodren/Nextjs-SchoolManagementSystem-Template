@@ -15,7 +15,7 @@ NextJS-SMS-Template is a platform designed to assist school administration, teac
 ## Student Features
 - **Simple Page**
 - 
-## Login Account
+## Demo Account
 - **ADMIN**: dummy@dummy.com
 - **TEACHER**: dummy2@dummy.com
 - **IN_ACTIVE STUDENT**: dummy3@dummy.com
