@@ -50,6 +50,4 @@ Hi everyone, this is my first and probably last Next.js project due to my laptop
 
 
 ## DONATE
-<a href="https://www.buymeacoffee.com/aryaferdya9"><img src="https://img.buymeacoffee.com/button-api/?text=Help Me Repair&emoji=🛠️&slug=aryaferdya9&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff" /></a>
-
 <a href="https://www.buymeacoffee.com/aryaferdya9"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a laptop&emoji=💻&slug=aryaferdya9&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
