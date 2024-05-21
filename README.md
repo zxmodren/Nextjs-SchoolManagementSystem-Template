@@ -2,13 +2,6 @@
 
 NextJS-SMS-Template is a platform designed to assist school administration, teachers, and students in managing information and educational processes efficiently. Here are the key features of this SMS template:
 
-## Demo Account
-- **ADMIN**: dummy@dummy.com
-- **TEACHER**: dummy2@dummy.com
-- **IN_ACTIVE STUDENT**: dummy3@dummy.com
-- **ACTIVE STUDENT**: dummy4@dummy.com
-- **BANNED STUDENT**: dummy5@dummy.com
-- **PASS**: 123456
 
 ## Admin Features
 - **Student Management**: Add, view, edit, and delete student records. Manage classes.
